@@ -4,6 +4,7 @@ from utils.serializer import (
     serialize_block,
     deserialize_request
 )
+import json  # 👈 NOVO
 
 # 🔗 Criar blockchain ligada
 blockchain = []
@@ -19,6 +20,7 @@ def create_blockchain():
 
 create_blockchain()
 
+# 🔹 FUNÇÃO 1 (já tinhas) — enviar bloco ao cliente
 def get_block(request_json):
     print("\nPedido recebido!")
 
@@ -33,14 +35,28 @@ def get_block(request_json):
             print("Bloco encontrado!")
             print("A enviar bloco:", block.to_dict())
 
-            return serialize_block(block)  # ✅ CORRETO
+            return serialize_block(block)
 
     print("Bloco não encontrado!")
     return "ERRO: Bloco não encontrado"
 
 
+# 🔥 FUNÇÃO 2 (NOVA) — receber bloco do cliente
+def send_block(block_json):
+    print("\nRecebi bloco do cliente para desserializar!")
+
+    block = json.loads(block_json)
+
+    print("Bloco desserializado:", block)
+
+    return f"Bloco {block['index']} desserializado com sucesso"
+
+
+# 🔧 Servidor
 server = SimpleXMLRPCServer(("localhost", 8000))
+
 server.register_function(get_block, "get_block")
+server.register_function(send_block, "send_block")  # 👈 NOVO
 
 print("Servidor RPC ativo na porta 8000...")
 server.serve_forever()

@@ -23,7 +23,7 @@ if "ERRO" in response:
     print(response)
 
 else:
-    # 👇 Guardar ficheiro (IMPORTANTE para o professor)
+    # 👇 Guardar ficheiro
     filename = f"bloco_{block_id}.json"
     with open(filename, "w") as f:
         f.write(response)
@@ -36,10 +36,18 @@ else:
     print("\nBloco recebido:")
     print(block)
 
-    # 👇 Evitar erro (caso seja dict)
+    # Mostrar dados
     if isinstance(block, dict):
         print("Hash:", block.get("hash"))
         print("Previous Hash:", block.get("previous_hash"))
     else:
         print("Hash:", block.hash)
         print("Previous Hash:", block.previous_hash)
+
+    # 🔥 PARTE FINAL DO ENUNCIADO
+    print("\nA enviar bloco de volta ao servidor para desserialização...")
+
+    response_server = proxy.send_block(response)
+
+    print("\nResposta do servidor:")
+    print(response_server)

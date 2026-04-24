@@ -24,6 +24,12 @@ O cliente:
 4.	Guarda o bloco num ficheiro JSON 
 5.	Desserializa o conteúdo para visualização 
 A serialização foi implementada com JSON, permitindo uma representação simples e legível dos dados.
+Adicionalmente, o sistema implementa comunicação bidirecional. O cliente pode enviar novamente o bloco serializado ao servidor, que procede à sua desserialização.
+
+Para isso, foi implementada uma função no servidor que recebe o bloco em formato JSON, realiza a desserialização e devolve uma confirmação ao cliente.
+
+Este mecanismo permite demonstrar não apenas a obtenção de dados, mas também o envio e processamento de dados do cliente para o servidor.
+
 A arquitetura segue um modelo modular, permitindo a separação clara entre cliente, servidor e componentes de serialização.
 
 3.	Funcionamento do trabalho	
@@ -44,14 +50,16 @@ O servidor recebe o pedido, desserializa o identificador do bloco e procura o bl
  ![Figura 3](images/fig3.png)
 Figura 3
 
-O cliente recebe o bloco serializado, guarda-o automaticamente num ficheiro JSON (Fig. 4) com o nome correspondente ao identificador do bloco e realiza a desserialização dos dados para apresentação ao utilizador. 
+O cliente recebe o bloco serializado, guarda-o automaticamente num ficheiro JSON (Fig. 4) com o nome correspondente ao identificador do bloco e realiza a desserialização dos dados para apresentação ao utilizador. Após este processo, o cliente envia o bloco serializado de volta ao servidor através de RPC. O servidor recebe o ficheiro, desserializa o conteúdo e devolve uma mensagem de confirmação ao cliente, demonstrando a comunicação bidirecional do sistema.
+
  ![Figura 4](images/fig4.png)
 Figura 4
+
 Se o bloco solicitado não existir, o servidor devolve uma mensagem de erro, que é apresentada ao utilizador no cliente. (Fig. 5)
 Este processo demonstra o fluxo completo de comunicação entre cliente e servidor, incluindo envio de pedidos, processamento remoto, serialização e desserialização de dados.
 
  ![Figura 5](images/fig5.png)
-Fig. 5
+Figura 5
 
 
 4.	Conclusão
