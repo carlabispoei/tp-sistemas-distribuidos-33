@@ -7,7 +7,7 @@ from utils.serializer import (
 
 proxy = xmlrpc.client.ServerProxy("http://localhost:8000/")
 
-# 👇 Pergunta ao utilizador
+# Perguntar ao utilizador
 block_id = int(input("Que bloco queres pedir? (Ex: 1, 2, 3): "))
 
 print(f"A pedir bloco {block_id} ao servidor...")
@@ -23,7 +23,7 @@ if "ERRO" in response:
     print(response)
 
 else:
-    # 👇 Guardar ficheiro
+    # Guardar ficheiro
     filename = f"bloco_{block_id}.json"
     with open(filename, "w") as f:
         f.write(response)
