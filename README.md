@@ -4,6 +4,7 @@ O presente trabalho consiste no desenvolvimento de um sistema distribuído basea
 O cliente envia um pedido ao servidor contendo o identificador de um bloco. O servidor processa esse pedido, obtém o bloco correspondente de uma estrutura simulada, procede à sua serialização em formato JSON e envia-o de volta ao cliente. O cliente, por sua vez, guarda o bloco recebido num ficheiro e pode reenviá-lo ao servidor para desserialização.
 Este sistema permite demonstrar conceitos fundamentais de sistemas distribuídos, como comunicação remota, serialização e desserialização de dados.
 
+![Figura 1](images/fig1.png)
  
 Figura 1 – Arquitetura do sistema cliente-servidor
 2.	Implementação do Trabalho	
@@ -33,22 +34,23 @@ O funcionamento do sistema inicia-se com a execução do servidor RPC, que fica 
 Ao iniciar o cliente, é apresentado ao utilizador um pedido de introdução do número do bloco pretendido, como ilustrado na Figura 2.
 
  
-                                                                                                   Figura 2
+ ![Figura 2](images/fig2.png)
+     Figura 2
 
 O cliente recebe o valor introduzido pelo utilizador e procede à sua serialização, enviando o pedido ao servidor através do protocolo RPC.
 O servidor recebe o pedido, desserializa o identificador do bloco e procura o bloco correspondente na blockchain simulada. Caso o bloco exista, o servidor procede à sua serialização em formato JSON e envia-o de volta ao cliente. (Fig. 3)
 
 
- 
-                                                                                                   Figura 3
+ ![Figura 3](images/fig3.png)
+Figura 3
 
 O cliente recebe o bloco serializado, guarda-o automaticamente num ficheiro JSON (Fig. 4) com o nome correspondente ao identificador do bloco e realiza a desserialização dos dados para apresentação ao utilizador. 
- 
+ ![Figura 4](images/fig4.png)
 Figura 4
 Se o bloco solicitado não existir, o servidor devolve uma mensagem de erro, que é apresentada ao utilizador no cliente. (Fig. 5)
 Este processo demonstra o fluxo completo de comunicação entre cliente e servidor, incluindo envio de pedidos, processamento remoto, serialização e desserialização de dados.
 
- 
+ ![Figura 5](images/fig5.png)
 Fig. 5
 
 
